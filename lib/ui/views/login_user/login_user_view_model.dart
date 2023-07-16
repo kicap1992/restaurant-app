@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import '../../../app/app.router.dart';
 
-import '../../../app/app.locator.dart';
 import '../../../app/app.logger.dart';
 import '../../../app/core/custom_base_view_model.dart';
-import '../../../services/my_easyloading.dart';
 
 class LoginUserViewModel extends CustomBaseViewModel {
   final log = getLogger('LoginUserViewModel');
-  final easyloading = locator<MyEasyLoading>();
 
   TextEditingController noHpController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -21,13 +18,13 @@ class LoginUserViewModel extends CustomBaseViewModel {
   login() async {
     setBusy(true);
     backPressed = false;
-    easyloading.showLoading();
-    await Future.delayed(const Duration(seconds: 5));
-    easyloading.dismissLoading();
+    easyLoading.showLoading();
+    await Future.delayed(const Duration(seconds: 2));
+    easyLoading.dismissLoading();
     setBusy(false);
     backPressed = true;
     notifyListeners();
-    // await navigationService.navigateToHomeView();
+    await navigationService.navigateToUserIndexTrackingView();
   }
 
   daftar() async {

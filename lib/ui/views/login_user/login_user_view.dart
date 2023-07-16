@@ -23,7 +23,11 @@ class LoginUserView extends StatelessWidget {
         return Scaffold(
           body: WillPopScope(
             onWillPop: () async {
-              return model.backPressed;
+              if (model.backPressed) {
+                // model.back();
+                model.quitApp(context);
+              }
+              return false;
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -75,12 +79,14 @@ class LoginUserView extends StatelessWidget {
                         MyButton(
                           text: 'Login',
                           onPressed: () {
+                            FocusScope.of(context).unfocus();
                             model.log.i('Login button pressed');
                             model.login();
                           },
                         ),
                         TextButton(
                           onPressed: () {
+                            FocusScope.of(context).unfocus();
                             model.daftar();
                           },
                           child: const Text(

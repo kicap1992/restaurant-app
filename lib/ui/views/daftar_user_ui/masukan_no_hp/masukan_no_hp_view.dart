@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../app/app.router.dart';
 import 'package:stacked/stacked.dart';
 import 'package:validatorless/validatorless.dart';
 
@@ -35,7 +36,10 @@ class MasukanNoHpView extends StatelessWidget {
           ),
           body: WillPopScope(
             onWillPop: () async {
-              return model.backPressed;
+              if (model.backPressed) {
+                model.navigationService.navigateToLoginUserView();
+              }
+              return false;
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -78,6 +82,7 @@ class MasukanNoHpView extends StatelessWidget {
                             if (!model.formKey.currentState!.validate()) {
                               return;
                             }
+                            FocusScope.of(context).unfocus();
                             model.log.i('Selanjutnya button pressed');
                             model.selanjutnya();
                           },
