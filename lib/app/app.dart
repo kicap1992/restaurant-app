@@ -1,4 +1,5 @@
 import 'package:reza_app/ui/views/user_ui/akun_user/akun_user_view.dart';
+import 'package:reza_app/ui/views/user_ui/makanan_list/detail_makanan/detail_makanan_view.dart';
 import 'package:reza_app/ui/views/user_ui/makanan_list/makanan_list_view.dart';
 import 'package:reza_app/ui/views/user_ui/pesanan_list/pesanan_list_view.dart';
 import 'package:reza_app/ui/views/user_ui/reservasi_meja/reservasi_meja_view.dart';
@@ -31,6 +32,7 @@ import '../ui/views/splash_screen/splash_screen_view.dart';
         MaterialRoute(page: AkunUserView),
       ],
     ),
+    MaterialRoute(page: DetailMakananView),
   ],
   // dialogs: [
   //   StackedDialog(classType: AddSiswaDialogView),

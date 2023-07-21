@@ -25,27 +25,14 @@ class UserIndexTrackingView extends StatelessWidget {
         Widget? child,
       ) {
         return Scaffold(
-          appBar: AppBar(
-            title: Text(
-              model.header,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-              ),
-            ),
-            backgroundColor: mainColor,
-            elevation: 0,
-            automaticallyImplyLeading: false,
-          ),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-            child: ExtendedNavigator(
-              navigatorKey: StackedService.nestedNavigationKey(3),
-              router: UserIndexTrackingViewRouter(),
-              observers: [
-                StackedService.routeObserver,
-              ],
-            ),
+          backgroundColor: backgroundColor,
+          extendBody: false,
+          body: ExtendedNavigator(
+            navigatorKey: StackedService.nestedNavigationKey(3),
+            router: UserIndexTrackingViewRouter(),
+            observers: [
+              StackedService.routeObserver,
+            ],
           ),
           bottomNavigationBar: StylishBottomBar(
             items: [
@@ -56,13 +43,16 @@ class UserIndexTrackingView extends StatelessWidget {
                               model.bottomNavBarList.indexOf(item)
                           ? sixthGrey
                           : backgroundColor),
-                  title: Text(
-                    item['name'],
-                    style: regularTextStyle.copyWith(
-                      color: model.currentIndex ==
-                              model.bottomNavBarList.indexOf(item)
-                          ? sixthGrey
-                          : Colors.grey,
+                  title: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      item['name'],
+                      style: regularTextStyle.copyWith(
+                        color: model.currentIndex ==
+                                model.bottomNavBarList.indexOf(item)
+                            ? sixthGrey
+                            : Colors.grey,
+                      ),
                     ),
                   ),
                   backgroundColor:

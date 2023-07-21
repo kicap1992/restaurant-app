@@ -5,7 +5,7 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/material.dart' as _i8;
+import 'package:flutter/material.dart' as _i9;
 import 'package:flutter/material.dart';
 import 'package:reza_app/ui/views/daftar_user_ui/input_informasi_diri/input_informasi_diri_view.dart'
     as _i6;
@@ -16,17 +16,19 @@ import 'package:reza_app/ui/views/daftar_user_ui/verifikasi_no_hp/verifikasi_no_
 import 'package:reza_app/ui/views/login_user/login_user_view.dart' as _i3;
 import 'package:reza_app/ui/views/splash_screen/splash_screen_view.dart' as _i2;
 import 'package:reza_app/ui/views/user_ui/akun_user/akun_user_view.dart'
-    as _i12;
+    as _i13;
+import 'package:reza_app/ui/views/user_ui/makanan_list/detail_makanan/detail_makanan_view.dart'
+    as _i8;
 import 'package:reza_app/ui/views/user_ui/makanan_list/makanan_list_view.dart'
-    as _i10;
-import 'package:reza_app/ui/views/user_ui/pesanan_list/pesanan_list_view.dart'
     as _i11;
+import 'package:reza_app/ui/views/user_ui/pesanan_list/pesanan_list_view.dart'
+    as _i12;
 import 'package:reza_app/ui/views/user_ui/reservasi_meja/reservasi_meja_view.dart'
-    as _i9;
+    as _i10;
 import 'package:reza_app/ui/views/user_ui/user_index_tracking/user_index_tracking_view.dart'
     as _i7;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i13;
+import 'package:stacked_services/stacked_services.dart' as _i14;
 
 class Routes {
   static const splashScreenView = '/';
@@ -41,6 +43,8 @@ class Routes {
 
   static const userIndexTrackingView = '/user-index-tracking-view';
 
+  static const detailMakananView = '/detail-makanan-view';
+
   static const all = <String>{
     splashScreenView,
     loginUserView,
@@ -48,6 +52,7 @@ class Routes {
     verifikasiNoHpView,
     inputInformasiDiriView,
     userIndexTrackingView,
+    detailMakananView,
   };
 }
 
@@ -77,46 +82,56 @@ class StackedRouter extends _i1.RouterBase {
       Routes.userIndexTrackingView,
       page: _i7.UserIndexTrackingView,
     ),
+    _i1.RouteDef(
+      Routes.detailMakananView,
+      page: _i8.DetailMakananView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.SplashScreenView: (data) {
-      return _i8.MaterialPageRoute<dynamic>(
+      return _i9.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.SplashScreenView(),
         settings: data,
       );
     },
     _i3.LoginUserView: (data) {
-      return _i8.MaterialPageRoute<dynamic>(
+      return _i9.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.LoginUserView(),
         settings: data,
       );
     },
     _i4.MasukanNoHpView: (data) {
-      return _i8.MaterialPageRoute<dynamic>(
+      return _i9.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.MasukanNoHpView(),
         settings: data,
       );
     },
     _i5.VerifikasiNoHpView: (data) {
-      return _i8.MaterialPageRoute<dynamic>(
+      return _i9.MaterialPageRoute<dynamic>(
         builder: (context) => const _i5.VerifikasiNoHpView(),
         settings: data,
       );
     },
     _i6.InputInformasiDiriView: (data) {
       final args = data.getArgs<InputInformasiDiriViewArguments>(nullOk: false);
-      return _i8.MaterialPageRoute<dynamic>(
+      return _i9.MaterialPageRoute<dynamic>(
         builder: (context) =>
             _i6.InputInformasiDiriView(key: args.key, noHp: args.noHp),
         settings: data,
       );
     },
     _i7.UserIndexTrackingView: (data) {
-      return _i8.MaterialPageRoute<dynamic>(
+      return _i9.MaterialPageRoute<dynamic>(
         builder: (context) => const _i7.UserIndexTrackingView(),
         settings: data,
         fullscreenDialog: true,
+      );
+    },
+    _i8.DetailMakananView: (data) {
+      return _i9.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i8.DetailMakananView(),
+        settings: data,
       );
     },
   };
@@ -133,7 +148,7 @@ class InputInformasiDiriViewArguments {
     required this.noHp,
   });
 
-  final _i8.Key? key;
+  final _i9.Key? key;
 
   final String noHp;
 
@@ -175,44 +190,44 @@ class UserIndexTrackingViewRouter extends _i1.RouterBase {
   final _routes = <_i1.RouteDef>[
     _i1.RouteDef(
       UserIndexTrackingViewRoutes.reservasiMejaView,
-      page: _i9.ReservasiMejaView,
+      page: _i10.ReservasiMejaView,
     ),
     _i1.RouteDef(
       UserIndexTrackingViewRoutes.makananListView,
-      page: _i10.MakananListView,
+      page: _i11.MakananListView,
     ),
     _i1.RouteDef(
       UserIndexTrackingViewRoutes.pesananListView,
-      page: _i11.PesananListView,
+      page: _i12.PesananListView,
     ),
     _i1.RouteDef(
       UserIndexTrackingViewRoutes.akunUserView,
-      page: _i12.AkunUserView,
+      page: _i13.AkunUserView,
     ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
-    _i9.ReservasiMejaView: (data) {
-      return _i8.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i9.ReservasiMejaView(),
+    _i10.ReservasiMejaView: (data) {
+      return _i9.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i10.ReservasiMejaView(),
         settings: data,
       );
     },
-    _i10.MakananListView: (data) {
-      return _i8.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i10.MakananListView(),
+    _i11.MakananListView: (data) {
+      return _i9.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i11.MakananListView(),
         settings: data,
       );
     },
-    _i11.PesananListView: (data) {
-      return _i8.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i11.PesananListView(),
+    _i12.PesananListView: (data) {
+      return _i9.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i12.PesananListView(),
         settings: data,
       );
     },
-    _i12.AkunUserView: (data) {
-      return _i8.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i12.AkunUserView(),
+    _i13.AkunUserView: (data) {
+      return _i9.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i13.AkunUserView(),
         settings: data,
       );
     },
@@ -224,7 +239,7 @@ class UserIndexTrackingViewRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-extension NavigatorStateExtension on _i13.NavigationService {
+extension NavigatorStateExtension on _i14.NavigationService {
   Future<dynamic> navigateToSplashScreenView([
     int? routerId,
     bool preventDuplicates = true,
@@ -282,7 +297,7 @@ extension NavigatorStateExtension on _i13.NavigationService {
   }
 
   Future<dynamic> navigateToInputInformasiDiriView({
-    _i8.Key? key,
+    _i9.Key? key,
     required String noHp,
     int? routerId,
     bool preventDuplicates = true,
@@ -306,6 +321,20 @@ extension NavigatorStateExtension on _i13.NavigationService {
         transition,
   ]) async {
     return navigateTo<dynamic>(Routes.userIndexTrackingView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToDetailMakananView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.detailMakananView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -426,7 +455,7 @@ extension NavigatorStateExtension on _i13.NavigationService {
   }
 
   Future<dynamic> replaceWithInputInformasiDiriView({
-    _i8.Key? key,
+    _i9.Key? key,
     required String noHp,
     int? routerId,
     bool preventDuplicates = true,
@@ -450,6 +479,20 @@ extension NavigatorStateExtension on _i13.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.userIndexTrackingView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithDetailMakananView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.detailMakananView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
