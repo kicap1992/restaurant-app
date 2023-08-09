@@ -5,6 +5,6 @@ class DetailMakananViewModel extends CustomBaseViewModel {
   final log = getLogger('DetailMakananViewModel');
 
   Future<void> init() async {
-    easyLoading.backPressed = 3;
+    globalVar.backPressed = 'backNormal';
   }
 }

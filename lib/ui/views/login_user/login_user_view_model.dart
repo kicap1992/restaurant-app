@@ -17,12 +17,12 @@ class LoginUserViewModel extends CustomBaseViewModel {
 
   login() async {
     setBusy(true);
-    easyLoading.backPressed = 0;
+    globalVar.backPressed = 'cantBack';
     easyLoading.showLoading();
     await Future.delayed(const Duration(seconds: 5));
     easyLoading.dismissLoading();
     setBusy(false);
-    easyLoading.backPressed = 1;
+    globalVar.backPressed = 'backNormal';
     notifyListeners();
     await navigationService.navigateToUserIndexTrackingView();
   }

@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Panti Asuhan Aisyiyah Abadi',
+      title: 'Reza Restaurant App',
       theme: appTheme,
       debugShowCheckedModeBanner: false,
       navigatorKey: StackedService.navigatorKey,

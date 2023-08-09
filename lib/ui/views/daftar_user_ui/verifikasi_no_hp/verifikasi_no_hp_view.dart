@@ -36,7 +36,7 @@ class VerifikasiNoHpView extends StatelessWidget {
           ),
           body: WillPopScope(
             onWillPop: () async {
-              if (model.easyLoading.backPressed == 1) {
+              if (model.globalVar.backPressed == 'backNormal') {
                 model.back();
               }
               return false;

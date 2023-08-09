@@ -1,8 +1,6 @@
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class MyEasyLoading {
-  int backPressed = 1;
-
   showLoading() {
     EasyLoading.show(
       status: 'loading...',

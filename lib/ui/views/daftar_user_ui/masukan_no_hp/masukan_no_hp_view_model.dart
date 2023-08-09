@@ -16,9 +16,9 @@ class MasukanNoHpViewModel extends CustomBaseViewModel {
 
   selanjutnya() async {
     _easyloading.customLoading("Menghantar Kode OTP \nke WhatsApp Anda");
-    easyLoading.backPressed = 0;
+    globalVar.backPressed = 'cantBack';
     await Future.delayed(const Duration(seconds: 3));
-    easyLoading.backPressed = 1;
+    globalVar.backPressed = 'backNormal';
     notifyListeners();
     _easyloading.dismissLoading();
     await navigationService.navigateToVerifikasiNoHpView();

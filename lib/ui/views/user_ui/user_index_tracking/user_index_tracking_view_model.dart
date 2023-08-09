@@ -1,52 +1,49 @@
-import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:reza_app/services/my_easyloading.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../../app/app.locator.dart';
 import '../../../../app/app.logger.dart';
 import '../../../../app/app.router.dart';
-import '../../../../app/themes/app_colors.dart';
+import '../../../../services/global_var.dart';
 
 class UserIndexTrackingViewModel extends IndexTrackingViewModel {
   final log = getLogger('UserIndexTrackingViewModel');
   final navigationService = locator<NavigationService>();
-  final easyLoading = locator<MyEasyLoading>();
+  final globalVar = locator<GlobalVar>();
   // late bool backPressed;
   Future<void> init() async {
-    BackButtonInterceptor.add(myInterceptor);
+    // BackButtonInterceptor.add(myInterceptor);
     // backPressed = easyLoading.backPressed;
-    easyLoading.backPressed = 2;
+    globalVar.backPressed = 'exitApp';
   }
 
-  bool myInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
-    // print("BACK BUTTON!"); // Do some stuff.
+  // bool myInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
+  //   // print("BACK BUTTON!"); // Do some stuff.
 
-    log.i('myInterceptor : ${easyLoading.backPressed}');
+  //   log.i('myInterceptor : ${easyLoading.backPressed}');
 
-    if (easyLoading.backPressed == 2) {
-      quitApp(null);
-    }
+  //   if (easyLoading.backPressed == 2) {
+  //     quitApp(null);
+  //   }
 
-    if (easyLoading.backPressed == 3) {
-      // easyLoading.backPressed = 2;
-      // notifyListeners();
-      // navigationService.back();
-      easyLoading.backPressed = 2;
-      return false;
-    }
+  //   if (easyLoading.backPressed == 3) {
+  //     // easyLoading.backPressed = 2;
+  //     // notifyListeners();
+  //     // navigationService.back();
+  //     easyLoading.backPressed = 2;
+  //     return false;
+  //   }
 
-    if (easyLoading.backPressed == 1) {
-      // easyLoading.backPressed = 2;
-      // notifyListeners();
-      // navigationService.back();
-      return false;
-    }
+  //   if (easyLoading.backPressed == 1) {
+  //     // easyLoading.backPressed = 2;
+  //     // notifyListeners();
+  //     // navigationService.back();
+  //     return false;
+  //   }
 
-    return true;
-  }
+  //   return true;
+  // }
 
   final _bottomNavBarList = [
     {
@@ -95,37 +92,37 @@ class UserIndexTrackingViewModel extends IndexTrackingViewModel {
     );
   }
 
-  quitApp(BuildContext? context) {
-    easyLoading.backPressed = 0;
-    showDialog(
-      context: context ?? StackedService.navigatorKey!.currentContext!,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Keluar'),
-          content: const Text('Apakah Anda yakin ingin keluar?'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                easyLoading.backPressed = 2;
-                Navigator.of(context).pop(false);
-              },
-              child: const Text('Batal'),
-            ),
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(true),
-              child: const Text(
-                'Keluar',
-                style: TextStyle(color: dangerColor),
-              ),
-            ),
-          ],
-        );
-      },
-    ).then((value) {
-      if (value == true) {
-        SystemNavigator.pop();
-      }
-    });
-    notifyListeners();
-  }
+//   quitApp(BuildContext? context) {
+//     easyLoading.backPressed = 0;
+//     showDialog(
+//       context: context ?? StackedService.navigatorKey!.currentContext!,
+//       builder: (BuildContext context) {
+//         return AlertDialog(
+//           title: const Text('Keluar'),
+//           content: const Text('Apakah Anda yakin ingin keluar?'),
+//           actions: [
+//             TextButton(
+//               onPressed: () {
+//                 easyLoading.backPressed = 2;
+//                 Navigator.of(context).pop(false);
+//               },
+//               child: const Text('Batal'),
+//             ),
+//             TextButton(
+//               onPressed: () => Navigator.of(context).pop(true),
+//               child: const Text(
+//                 'Keluar',
+//                 style: TextStyle(color: dangerColor),
+//               ),
+//             ),
+//           ],
+//         );
+//       },
+//     ).then((value) {
+//       if (value == true) {
+//         SystemNavigator.pop();
+//       }
+//     });
+//     notifyListeners();
+//   }
 }

@@ -5,6 +5,6 @@ import '../../../../../app/app.logger.dart';
 class KeranjangSayaViewModel extends CustomBaseViewModel {
   final log = getLogger('KeranjangSayaViewModel');
   Future<void> init() async {
-    easyLoading.backPressed = 3;
+    globalVar.backPressed = 'backNormal';
   }
 }

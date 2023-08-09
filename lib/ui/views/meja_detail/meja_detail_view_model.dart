@@ -13,7 +13,7 @@ class MejaDetailViewModel extends CustomBaseViewModel {
     log.i('MejaDetailViewModel init');
     log.i('mejaId : $mejaId');
     this.mejaId = mejaId;
-    easyLoading.backPressed = 3;
+    globalVar.backPressed = 'backNormal';
     // seperate the number from the string
     var number = int.parse(mejaId.replaceAll(RegExp(r'[^0-9]'), ''));
     // log.i('number : $number');

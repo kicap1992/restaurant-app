@@ -13,6 +13,6 @@ class ReservasiMejaViewModel extends CustomBaseViewModel {
   ];
 
   Future<void> init() async {
-    easyLoading.backPressed = 2;
+    globalVar.backPressed = 'exitApp';
   }
 }

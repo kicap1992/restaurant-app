@@ -21,7 +21,17 @@ class MakananListView extends StatelessWidget {
         MakananListViewModel model,
         Widget? child,
       ) {
-        return Scaffold(
+        return WillPopScope(
+          onWillPop: () async {
+            // model.log.i('onWillPop di reservasi_meja_view.dart');
+            if (model.globalVar.backPressed == 'exitApp') {
+              model.quitApp(context);
+              model.globalVar.backPressed = 'exitApp';
+              return false;
+            }
+            return false;
+          },
+          child: Scaffold(
             backgroundColor: backgroundColor,
             body: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -38,7 +48,14 @@ class MakananListView extends StatelessWidget {
                       Expanded(
                         flex: 2,
                         child: IconButton(
-                          onPressed: () => model.back(),
+                          onPressed: () {
+                            if (model.globalVar.backPressed == 'exitApp') {
+                              model.quitApp(context);
+                              model.globalVar.backPressed = 'exitApp';
+                            } else {
+                              model.navigationService.back();
+                            }
+                          },
                           icon: const Icon(Icons.arrow_back),
                         ),
                       ),
@@ -230,7 +247,9 @@ class MakananListView extends StatelessWidget {
                   ],
                 ),
               ),
-            ));
+            ),
+          ),
+        );
       },
     );
   }

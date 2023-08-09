@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:reza_app/app/app.router.dart';
 import 'package:reza_app/app/themes/app_colors.dart';
 import 'package:reza_app/app/themes/app_text.dart';
 import 'package:stacked/stacked.dart';
@@ -26,119 +25,136 @@ class MejaDetailView extends StatelessWidget {
         MejaDetailViewModel model,
         Widget? child,
       ) {
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text('MejaDetailView',
-                style: TextStyle(color: Colors.white)),
-            backgroundColor: mainColor,
-            leading: IconButton(
-              onPressed: () => model.navigationService.popUntil((route) =>
-                  route.settings.name == Routes.userIndexTrackingView),
-              icon: const Icon(Icons.arrow_back, color: Colors.white),
+        return WillPopScope(
+          onWillPop: () async {
+            if (model.globalVar.backPressed == 'backNormal') {
+              model.globalVar.backPressed = 'exitApp';
+              return true;
+            }
+            // model.quitApp(context);
+
+            return false;
+          },
+          child: Scaffold(
+            appBar: AppBar(
+              title: const Text('MejaDetailView',
+                  style: TextStyle(color: Colors.white)),
+              backgroundColor: mainColor,
+              leading: IconButton(
+                onPressed: () {
+                  if (model.globalVar.backPressed == 'backNormal') {
+                    model.globalVar.backPressed = 'exitApp';
+                    model.navigationService.back();
+                    // return true;
+                  }
+                },
+                icon: const Icon(Icons.arrow_back, color: Colors.white),
+              ),
             ),
-          ),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: 250,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
+            body: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    height: 250,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: model.imgAsset == null
+                          ? const Center(child: CircularProgressIndicator())
+                          : Image.asset(model.imgAsset!, fit: BoxFit.cover),
+                    ),
                   ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: model.imgAsset == null
-                        ? const Center(child: CircularProgressIndicator())
-                        : Image.asset(model.imgAsset!, fit: BoxFit.cover),
+                  const SizedBox(height: 5),
+                  Text(
+                    model.namaMeja,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      // fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  model.namaMeja,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    // fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 10),
-                RichText(
-                  text: TextSpan(
-                    text: 'Status : ',
-                    style: regularTextStyle,
-                    children: [
-                      TextSpan(
-                        text: 'Tersedia',
-                        style: regularTextStyle.copyWith(
-                          color: Colors.green,
-                          fontWeight: FontWeight.bold,
+                  const SizedBox(height: 10),
+                  RichText(
+                    text: TextSpan(
+                      text: 'Status : ',
+                      style: regularTextStyle,
+                      children: [
+                        TextSpan(
+                          text: 'Tersedia',
+                          style: regularTextStyle.copyWith(
+                            color: Colors.green,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(height: 10),
-                RichText(
-                  text: TextSpan(
-                    text: 'Kapasitas : ',
-                    style: regularTextStyle,
-                    children: [
-                      TextSpan(
-                        text: 'Maksimal 8 Orang',
-                        style: regularTextStyle.copyWith(
-                          color: Colors.green,
-                          fontWeight: FontWeight.bold,
+                  const SizedBox(height: 10),
+                  RichText(
+                    text: TextSpan(
+                      text: 'Kapasitas : ',
+                      style: regularTextStyle,
+                      children: [
+                        TextSpan(
+                          text: 'Maksimal 8 Orang',
+                          style: regularTextStyle.copyWith(
+                            color: Colors.green,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(height: 10),
-                RichText(
-                  text: TextSpan(
-                    text: 'Lokasi : ',
-                    style: regularTextStyle,
-                    children: [
-                      TextSpan(
-                        text: 'Luar Ruangan',
-                        style: regularTextStyle.copyWith(
-                          color: Colors.green,
-                          fontWeight: FontWeight.bold,
+                  const SizedBox(height: 10),
+                  RichText(
+                    text: TextSpan(
+                      text: 'Lokasi : ',
+                      style: regularTextStyle,
+                      children: [
+                        TextSpan(
+                          text: 'Luar Ruangan',
+                          style: regularTextStyle.copyWith(
+                            color: Colors.green,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(height: 10),
-                RichText(
-                  text: TextSpan(
-                    text: 'Harga : ',
-                    style: regularTextStyle,
-                    children: [
-                      TextSpan(
-                        text: 'Rp. 20.000',
-                        style: regularTextStyle.copyWith(
-                          color: Colors.orange,
-                          fontWeight: FontWeight.bold,
+                  const SizedBox(height: 10),
+                  RichText(
+                    text: TextSpan(
+                      text: 'Harga : ',
+                      style: regularTextStyle,
+                      children: [
+                        TextSpan(
+                          text: 'Rp. 20.000',
+                          style: regularTextStyle.copyWith(
+                            color: Colors.orange,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
+            floatingActionButton: FloatingActionButton.extended(
+              onPressed: () {},
+              label: const Text('Pesan'),
+              icon: const Icon(Icons.add_shopping_cart),
+              backgroundColor: mainColor,
+            ),
+            floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerFloat,
           ),
-          floatingActionButton: FloatingActionButton.extended(
-            onPressed: () {},
-            label: const Text('Pesan'),
-            icon: const Icon(Icons.add_shopping_cart),
-            backgroundColor: mainColor,
-          ),
-          floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerFloat,
         );
       },
     );

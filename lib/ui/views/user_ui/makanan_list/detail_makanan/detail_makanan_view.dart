@@ -28,7 +28,17 @@ class DetailMakananView extends HookWidget {
         DetailMakananViewModel model,
         Widget? child,
       ) {
-        return Scaffold(
+        return WillPopScope(
+          onWillPop: () async {
+            // model.log.i('onWillPop di reservasi_meja_view.dart');
+            // if (model.globalVar.backPressed == 'exitApp') {
+            model.globalVar.backPressed = 'exitApp';
+            model.back();
+            return false;
+            // }
+            // return false;
+          },
+          child: Scaffold(
             backgroundColor: backgroundColor,
             body: SizedBox(
               width: MediaQuery.of(context).size.width,
@@ -203,7 +213,9 @@ class DetailMakananView extends HookWidget {
                   ),
                 ],
               ),
-            ));
+            ),
+          ),
+        );
       },
     );
   }
@@ -257,6 +269,7 @@ class TopBarWidget extends ViewModelWidget<DetailMakananViewModel> {
                   ),
                   child: IconButton(
                     onPressed: () {
+                      viewModel.globalVar.backPressed = 'exitApp';
                       viewModel.back();
                     },
                     icon: const Icon(
