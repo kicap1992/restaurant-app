@@ -33,13 +33,13 @@ class InputInformasiDiriViewModel extends CustomBaseViewModel {
   }
 
   goToLogin() async {
-    backPressed = false;
+    easyLoading.backPressed = 0;
     easyLoading.customLoading("Mendaftarkan Akun Anda");
     await Future.delayed(const Duration(seconds: 2));
     easyLoading.customLoading("Ke Halaman Login");
     await Future.delayed(const Duration(seconds: 2));
     easyLoading.dismissLoading();
-    backPressed = true;
+    easyLoading.backPressed = 1;
     notifyListeners();
     await navigationService.navigateToLoginUserView();
   }

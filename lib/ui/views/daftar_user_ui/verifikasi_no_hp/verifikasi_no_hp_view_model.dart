@@ -9,11 +9,11 @@ class VerifikasiNoHpViewModel extends CustomBaseViewModel {
   Future<void> init() async {}
 
   goToInputInformasiDiri() async {
-    backPressed = false;
+    easyLoading.backPressed = 0;
     easyLoading.customLoading("Ke Halaman Input Informasi Diri");
     await Future.delayed(const Duration(seconds: 3));
     easyLoading.dismissLoading();
-    backPressed = true;
+    easyLoading.backPressed = 1;
     notifyListeners();
     await navigationService.navigateToInputInformasiDiriView(
       noHp: "082293246583",

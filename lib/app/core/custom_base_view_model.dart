@@ -16,7 +16,7 @@ class CustomBaseViewModel extends BaseViewModel {
   final easyLoading = locator<MyEasyLoading>();
   final httpService = locator<MyHttpServices>();
 
-  bool backPressed = true;
+  // late bool backPressed;
 
   void back() {
     navigationService.back();

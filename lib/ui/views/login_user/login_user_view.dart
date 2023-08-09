@@ -23,7 +23,7 @@ class LoginUserView extends StatelessWidget {
         return Scaffold(
           body: WillPopScope(
             onWillPop: () async {
-              if (model.backPressed) {
+              if (model.easyLoading.backPressed == 1) {
                 // model.back();
                 model.quitApp(context);
               }

@@ -1,9 +1,5 @@
-import 'package:reza_app/ui/views/user_ui/akun_user/akun_user_view.dart';
-import 'package:reza_app/ui/views/user_ui/makanan_list/detail_makanan/detail_makanan_view.dart';
-import 'package:reza_app/ui/views/user_ui/makanan_list/makanan_list_view.dart';
-import 'package:reza_app/ui/views/user_ui/pesanan_list/pesanan_list_view.dart';
-import 'package:reza_app/ui/views/user_ui/reservasi_meja/reservasi_meja_view.dart';
-import 'package:reza_app/ui/views/user_ui/user_index_tracking/user_index_tracking_view.dart';
+import 'package:reza_app/ui/views/meja_detail/meja_detail_view.dart';
+import 'package:reza_app/ui/views/user_ui/pesanan_list/keranjang_saya/keranjang_saya_view.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked/stacked_annotations.dart';
 
@@ -14,6 +10,12 @@ import '../ui/views/daftar_user_ui/masukan_no_hp/masukan_no_hp_view.dart';
 import '../ui/views/daftar_user_ui/verifikasi_no_hp/verifikasi_no_hp_view.dart';
 import '../ui/views/login_user/login_user_view.dart';
 import '../ui/views/splash_screen/splash_screen_view.dart';
+import '../ui/views/user_ui/akun_user/akun_user_view.dart';
+import '../ui/views/user_ui/makanan_list/detail_makanan/detail_makanan_view.dart';
+import '../ui/views/user_ui/makanan_list/makanan_list_view.dart';
+import '../ui/views/user_ui/pesanan_list/pesanan_list_view.dart';
+import '../ui/views/user_ui/reservasi_meja/reservasi_meja_view.dart';
+import '../ui/views/user_ui/user_index_tracking/user_index_tracking_view.dart';
 
 @StackedApp(
   routes: [
@@ -33,6 +35,8 @@ import '../ui/views/splash_screen/splash_screen_view.dart';
       ],
     ),
     MaterialRoute(page: DetailMakananView),
+    MaterialRoute(page: MejaDetailView),
+    MaterialRoute(page: KeranjangSayaView)
   ],
   // dialogs: [
   //   StackedDialog(classType: AddSiswaDialogView),

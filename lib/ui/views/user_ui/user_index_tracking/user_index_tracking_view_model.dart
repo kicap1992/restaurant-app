@@ -1,6 +1,7 @@
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:reza_app/services/my_easyloading.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -12,16 +13,36 @@ import '../../../../app/themes/app_colors.dart';
 class UserIndexTrackingViewModel extends IndexTrackingViewModel {
   final log = getLogger('UserIndexTrackingViewModel');
   final navigationService = locator<NavigationService>();
-  bool backPressed = true;
+  final easyLoading = locator<MyEasyLoading>();
+  // late bool backPressed;
   Future<void> init() async {
     BackButtonInterceptor.add(myInterceptor);
+    // backPressed = easyLoading.backPressed;
+    easyLoading.backPressed = 2;
   }
 
   bool myInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
     // print("BACK BUTTON!"); // Do some stuff.
 
-    if (backPressed) {
+    log.i('myInterceptor : ${easyLoading.backPressed}');
+
+    if (easyLoading.backPressed == 2) {
       quitApp(null);
+    }
+
+    if (easyLoading.backPressed == 3) {
+      // easyLoading.backPressed = 2;
+      // notifyListeners();
+      // navigationService.back();
+      easyLoading.backPressed = 2;
+      return false;
+    }
+
+    if (easyLoading.backPressed == 1) {
+      // easyLoading.backPressed = 2;
+      // notifyListeners();
+      // navigationService.back();
+      return false;
     }
 
     return true;
@@ -75,7 +96,7 @@ class UserIndexTrackingViewModel extends IndexTrackingViewModel {
   }
 
   quitApp(BuildContext? context) {
-    backPressed = false;
+    easyLoading.backPressed = 0;
     showDialog(
       context: context ?? StackedService.navigatorKey!.currentContext!,
       builder: (BuildContext context) {
@@ -85,7 +106,7 @@ class UserIndexTrackingViewModel extends IndexTrackingViewModel {
           actions: [
             TextButton(
               onPressed: () {
-                backPressed = true;
+                easyLoading.backPressed = 2;
                 Navigator.of(context).pop(false);
               },
               child: const Text('Batal'),

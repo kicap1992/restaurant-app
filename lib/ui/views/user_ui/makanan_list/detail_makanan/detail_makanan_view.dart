@@ -29,79 +29,181 @@ class DetailMakananView extends HookWidget {
         Widget? child,
       ) {
         return Scaffold(
-          backgroundColor: backgroundColor,
-          body: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            child: Stack(
-              children: [
-                ListView.builder(
-                  controller: scrollController,
-                  itemCount: 1,
-                  itemBuilder: (context, index) {
-                    return Column(
+            backgroundColor: backgroundColor,
+            body: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: Stack(
+                children: [
+                  ListView.builder(
+                    controller: scrollController,
+                    itemCount: 1,
+                    itemBuilder: (context, index) {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: MediaQuery.of(context).padding.top,
+                          ),
+                          const TopMenuWidget(),
+                          const SecondWidget(),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          MyWhiteContainer(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  RichText(
+                                    text: TextSpan(
+                                      children: [
+                                        TextSpan(
+                                          text: 'Ongkos Kirim',
+                                          style: boldTextStyle.copyWith(
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                        TextSpan(
+                                          text: ' Rp. 10.000',
+                                          style: boldTextStyle.copyWith(
+                                            fontSize: 14,
+                                            color: dangerColor,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    "Bisa Dibayar COD sekitar Parepare",
+                                    style: regularTextStyle.copyWith(
+                                      fontSize: 13,
+                                      color: fontGrey,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          MyWhiteContainer(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Deskripsi",
+                                    style: boldTextStyle.copyWith(
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  // bikin dummy text tentang nasi goreng
+                                  Text(
+                                    "Nasi goreng adalah makanan yang terbuat dari nasi yang digoreng dan diaduk dalam minyak goreng atau margarin, biasanya ditambah kecap manis, bawang merah, bawang putih, daging ayam, telur, dan bumbu-bumbu lainnya. Nasi goreng sering dianggap sebagai makanan nasional Indonesia. Nasi goreng dapat ditemukan di seluruh Indonesia, dari restoran pinggir jalan, warung, hingga hotel bintang lima dan restoran mewah.",
+                                    style: regularTextStyle.copyWith(
+                                      fontSize: 13,
+                                      color: fontGrey,
+                                    ),
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                  TopBarWidget(opacity: opacity),
+                ],
+              ),
+            ),
+            bottomNavigationBar: Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10,
+                vertical: 10,
+              ),
+              width: MediaQuery.of(context).size.width,
+              height: 70,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 5,
+                    spreadRadius: 5,
+                  ),
+                ],
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          height: MediaQuery.of(context).padding.top,
+                        Text(
+                          "Total Harga",
+                          style: regularTextStyle.copyWith(
+                            fontSize: 14,
+                            color: fontGrey,
+                          ),
                         ),
-                        const TopMenuWidget(),
-                        const SecondWidget(),
                         const SizedBox(
-                          height: 10,
+                          height: 5,
                         ),
-                        MyWhiteContainer(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 10,
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                RichText(
-                                  text: TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: 'Ongkos Kirim',
-                                        style: boldTextStyle.copyWith(
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                      TextSpan(
-                                        text: ' Rp. 10.000',
-                                        style: boldTextStyle.copyWith(
-                                          fontSize: 14,
-                                          color: dangerColor,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  "Bisa Dibayar COD sekitar Parepare",
-                                  style: regularTextStyle.copyWith(
-                                    fontSize: 13,
-                                    color: fontGrey,
-                                  ),
-                                ),
-                              ],
-                            ),
+                        Text(
+                          "Rp. 35.000",
+                          style: boldTextStyle.copyWith(
+                            fontSize: 16,
+                            color: dangerColor,
                           ),
                         ),
                       ],
-                    );
-                  },
-                ),
-                TopBarWidget(opacity: opacity),
-              ],
-            ),
-          ),
-        );
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: dangerColor,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Pesan Sekarang",
+                          style: boldTextStyle.copyWith(
+                            fontSize: 16,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ));
       },
     );
   }

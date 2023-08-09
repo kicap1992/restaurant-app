@@ -36,7 +36,7 @@ class MasukanNoHpView extends StatelessWidget {
           ),
           body: WillPopScope(
             onWillPop: () async {
-              if (model.backPressed) {
+              if (model.easyLoading.backPressed == 1) {
                 model.navigationService.navigateToLoginUserView();
               }
               return false;
