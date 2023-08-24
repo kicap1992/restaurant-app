@@ -104,16 +104,14 @@ class ReservasiMejaView extends StatelessWidget {
                   ),
                 ),
                 Expanded(
+                  // child: SizedBox(),
                   child: WebView(
                     initialUrl: dotenv.env['table_url'],
                     // initialUrl: 'http://172.29.85.181/parkir/user',
                     // initialUrl: 'https://rekam-medis.airlangga-it.com/',
                     javascriptMode: JavascriptMode.unrestricted,
                     onWebViewCreated: (WebViewController webViewController) {
-                      // _controller.complete(webViewController);
-                      // model.controllerCompleter.future
-                      //     .then((value) => model.webViewController = value);
-                      // model.controllerCompleter.complete(webViewController);
+                      model.webViewController = webViewController;
                     },
                     onProgress: (int progress) {
                       // model.log.i('WebView is loading (progress : $progress%)');
@@ -196,19 +194,19 @@ class ReservasiMejaView extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 5),
-                      const Text('Tidak Tersedia'),
+                      const Text('Dibooking'),
 
                       const SizedBox(width: 10),
                       Container(
                         width: 20,
                         height: 20,
                         decoration: const BoxDecoration(
-                          color: Colors.blue,
+                          color: Colors.grey,
                           shape: BoxShape.circle,
                         ),
                       ),
                       const SizedBox(width: 5),
-                      const Text('Dipesan'),
+                      const Text('Tidak Tersedia'),
                       const SizedBox(width: 10),
                     ],
                   ),

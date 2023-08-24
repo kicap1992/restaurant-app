@@ -6,7 +6,7 @@ import '../app/app.logger.dart';
 class MyHttpServices {
   final log = getLogger('MyHttpServices');
   final _options = BaseOptions(
-    baseUrl: dotenv.env['api_url']!,
+    baseUrl: dotenv.env['url']!,
     connectTimeout: const Duration(seconds: 120),
     receiveTimeout: const Duration(seconds: 120),
   );

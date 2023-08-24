@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:reza_app/model/makanan_model.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../../app/themes/app_colors.dart';
@@ -8,8 +10,12 @@ import '../../../../widgets/my_white_container.dart';
 import './detail_makanan_view_model.dart';
 
 class DetailMakananView extends HookWidget {
-  const DetailMakananView({Key? key}) : super(key: key);
+  final MakananModel makananModel;
 
+  const DetailMakananView({
+    Key? key,
+    required this.makananModel,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final scrollController = useScrollController();
@@ -21,7 +27,7 @@ class DetailMakananView extends HookWidget {
     return ViewModelBuilder<DetailMakananViewModel>.reactive(
       viewModelBuilder: () => DetailMakananViewModel(),
       onViewModelReady: (DetailMakananViewModel model) async {
-        await model.init();
+        await model.init(makananModel);
       },
       builder: (
         BuildContext context,
@@ -127,7 +133,9 @@ class DetailMakananView extends HookWidget {
                                   ),
                                   // bikin dummy text tentang nasi goreng
                                   Text(
-                                    "Nasi goreng adalah makanan yang terbuat dari nasi yang digoreng dan diaduk dalam minyak goreng atau margarin, biasanya ditambah kecap manis, bawang merah, bawang putih, daging ayam, telur, dan bumbu-bumbu lainnya. Nasi goreng sering dianggap sebagai makanan nasional Indonesia. Nasi goreng dapat ditemukan di seluruh Indonesia, dari restoran pinggir jalan, warung, hingga hotel bintang lima dan restoran mewah.",
+                                    model.isBusy
+                                        ? 'Loading...'
+                                        : model.makananModel!.deskripsiMakanan!,
                                     style: regularTextStyle.copyWith(
                                       fontSize: 13,
                                       color: fontGrey,
@@ -184,7 +192,9 @@ class DetailMakananView extends HookWidget {
                           height: 5,
                         ),
                         Text(
-                          "Rp. 35.000",
+                          model.isBusy
+                              ? 'Loading...'
+                              : 'Rp. ${int.parse(makananModel.hargaMakanan!) + 10000}',
                           style: boldTextStyle.copyWith(
                             fontSize: 16,
                             color: dangerColor,
@@ -342,7 +352,9 @@ class SecondWidget extends ViewModelWidget<DetailMakananViewModel> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Burger King Handcrafted Burgers ",
+                  viewModel.isBusy
+                      ? 'Loading...'
+                      : viewModel.makananModel!.namaMakanan!,
                   style: regularTextStyle.copyWith(
                     fontSize: 17,
                   ),
@@ -351,7 +363,9 @@ class SecondWidget extends ViewModelWidget<DetailMakananViewModel> {
                   height: 10,
                 ),
                 Text(
-                  "Rp. 25.000",
+                  viewModel.isBusy
+                      ? 'Loading...'
+                      : 'Rp .${viewModel.makananModel!.hargaMakanan!}',
                   style: regularTextStyle.copyWith(
                     fontSize: 18,
                     color: dangerColor,
@@ -405,37 +419,38 @@ class TopMenuWidget extends ViewModelWidget<DetailMakananViewModel> {
     return Stack(
       children: [
         SizedBox(
-          width: double.infinity,
-          height: MediaQuery.of(context).size.height * 0.35,
-          child: Image.network(
-            'https://a.cdn-hotels.com/gdcs/production0/d1513/35c1c89e-408c-4449-9abe-f109068f40c0.jpg?impolicy=fcrop&w=800&h=533&q=medium',
-            fit: BoxFit.cover,
-          ),
-        ),
-        Positioned(
-          bottom: 10,
-          right: 10,
-          child: Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 5,
-            ),
-            // width: 20,
-            height: 20,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: const Center(
-              child: Text(
-                '1 / 2',
-                style: TextStyle(
-                  color: fontGrey,
-                  fontSize: 12,
-                ),
-              ),
-            ),
-          ),
-        ),
+            width: double.infinity,
+            height: MediaQuery.of(context).size.height * 0.35,
+            child: viewModel.isBusy
+                ? const Center(child: CircularProgressIndicator())
+                : Image.network(
+                    '${dotenv.env['url']}assets/makanan/${viewModel.makananModel!.imgUrl}',
+                    fit: BoxFit.cover,
+                  )),
+        // Positioned(
+        //   bottom: 10,
+        //   right: 10,
+        //   child: Container(
+        //     padding: const EdgeInsets.symmetric(
+        //       horizontal: 5,
+        //     ),
+        //     // width: 20,
+        //     height: 20,
+        //     decoration: BoxDecoration(
+        //       color: Colors.white,
+        //       borderRadius: BorderRadius.circular(10),
+        //     ),
+        //     child: const Center(
+        //       child: Text(
+        //         '1 / 2',
+        //         style: TextStyle(
+        //           color: fontGrey,
+        //           fontSize: 12,
+        //         ),
+        //       ),
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }

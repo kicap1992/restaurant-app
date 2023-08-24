@@ -5,6 +5,7 @@ import 'package:stacked/stacked_annotations.dart';
 
 import '../services/http_services.dart';
 import '../services/my_easyloading.dart';
+import '../services/my_socket_io_client.dart';
 import '../ui/views/daftar_user_ui/input_informasi_diri/input_informasi_diri_view.dart';
 import '../ui/views/daftar_user_ui/masukan_no_hp/masukan_no_hp_view.dart';
 import '../ui/views/daftar_user_ui/verifikasi_no_hp/verifikasi_no_hp_view.dart';
@@ -54,6 +55,7 @@ import '../ui/views/user_ui/user_index_tracking/user_index_tracking_view.dart';
     LazySingleton(classType: MyHttpServices),
     LazySingleton(classType: OtherFunction),
     LazySingleton(classType: GlobalVar),
+    LazySingleton(classType: MySocketIoClient),
   ],
   logger: StackedLogger(),
 )

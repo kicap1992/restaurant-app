@@ -85,9 +85,18 @@ class MejaDetailView extends StatelessWidget {
                       style: regularTextStyle,
                       children: [
                         TextSpan(
-                          text: 'Tersedia',
+                          text: model.theBool
+                              ? (model.reservasiMejaModel == null
+                                  ? 'Loading'
+                                  : model.reservasiMejaModel!.status!
+                                      .toUpperCase())
+                              : 'Tersedia',
                           style: regularTextStyle.copyWith(
-                            color: Colors.green,
+                            color: model.theBool
+                                ? (model.reservasiMejaModel == null
+                                    ? Colors.grey
+                                    : Colors.red)
+                                : Colors.green,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -146,10 +155,14 @@ class MejaDetailView extends StatelessWidget {
               ),
             ),
             floatingActionButton: FloatingActionButton.extended(
-              onPressed: () {},
+              onPressed: () {
+                if (model.theBool == false) {
+                  model.showReservasiMeja();
+                }
+              },
               label: const Text('Pesan'),
               icon: const Icon(Icons.add_shopping_cart),
-              backgroundColor: mainColor,
+              backgroundColor: mainColor.withOpacity(model.theBool ? 0.5 : 1),
             ),
             floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
             floatingActionButtonLocation:

@@ -7,6 +7,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:flutter/material.dart' as _i11;
 import 'package:flutter/material.dart';
+import 'package:reza_app/model/makanan_model.dart' as _i12;
 import 'package:reza_app/ui/views/daftar_user_ui/input_informasi_diri/input_informasi_diri_view.dart'
     as _i6;
 import 'package:reza_app/ui/views/daftar_user_ui/masukan_no_hp/masukan_no_hp_view.dart'
@@ -17,21 +18,21 @@ import 'package:reza_app/ui/views/login_user/login_user_view.dart' as _i3;
 import 'package:reza_app/ui/views/meja_detail/meja_detail_view.dart' as _i9;
 import 'package:reza_app/ui/views/splash_screen/splash_screen_view.dart' as _i2;
 import 'package:reza_app/ui/views/user_ui/akun_user/akun_user_view.dart'
-    as _i15;
+    as _i16;
 import 'package:reza_app/ui/views/user_ui/makanan_list/detail_makanan/detail_makanan_view.dart'
     as _i8;
 import 'package:reza_app/ui/views/user_ui/makanan_list/makanan_list_view.dart'
-    as _i13;
+    as _i14;
 import 'package:reza_app/ui/views/user_ui/pesanan_list/keranjang_saya/keranjang_saya_view.dart'
     as _i10;
 import 'package:reza_app/ui/views/user_ui/pesanan_list/pesanan_list_view.dart'
-    as _i14;
+    as _i15;
 import 'package:reza_app/ui/views/user_ui/reservasi_meja/reservasi_meja_view.dart'
-    as _i12;
+    as _i13;
 import 'package:reza_app/ui/views/user_ui/user_index_tracking/user_index_tracking_view.dart'
     as _i7;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i16;
+import 'package:stacked_services/stacked_services.dart' as _i17;
 
 class Routes {
   static const splashScreenView = '/';
@@ -146,8 +147,10 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i8.DetailMakananView: (data) {
+      final args = data.getArgs<DetailMakananViewArguments>(nullOk: false);
       return _i11.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i8.DetailMakananView(),
+        builder: (context) => _i8.DetailMakananView(
+            key: args.key, makananModel: args.makananModel),
         settings: data,
       );
     },
@@ -200,6 +203,33 @@ class InputInformasiDiriViewArguments {
   }
 }
 
+class DetailMakananViewArguments {
+  const DetailMakananViewArguments({
+    this.key,
+    required this.makananModel,
+  });
+
+  final _i11.Key? key;
+
+  final _i12.MakananModel makananModel;
+
+  @override
+  String toString() {
+    return '{"key": "$key", "makananModel": "$makananModel"}';
+  }
+
+  @override
+  bool operator ==(covariant DetailMakananViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key && other.makananModel == makananModel;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode ^ makananModel.hashCode;
+  }
+}
+
 class MejaDetailViewArguments {
   const MejaDetailViewArguments({
     this.key,
@@ -248,44 +278,44 @@ class UserIndexTrackingViewRouter extends _i1.RouterBase {
   final _routes = <_i1.RouteDef>[
     _i1.RouteDef(
       UserIndexTrackingViewRoutes.reservasiMejaView,
-      page: _i12.ReservasiMejaView,
+      page: _i13.ReservasiMejaView,
     ),
     _i1.RouteDef(
       UserIndexTrackingViewRoutes.makananListView,
-      page: _i13.MakananListView,
+      page: _i14.MakananListView,
     ),
     _i1.RouteDef(
       UserIndexTrackingViewRoutes.pesananListView,
-      page: _i14.PesananListView,
+      page: _i15.PesananListView,
     ),
     _i1.RouteDef(
       UserIndexTrackingViewRoutes.akunUserView,
-      page: _i15.AkunUserView,
+      page: _i16.AkunUserView,
     ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
-    _i12.ReservasiMejaView: (data) {
+    _i13.ReservasiMejaView: (data) {
       return _i11.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i12.ReservasiMejaView(),
+        builder: (context) => const _i13.ReservasiMejaView(),
         settings: data,
       );
     },
-    _i13.MakananListView: (data) {
+    _i14.MakananListView: (data) {
       return _i11.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i13.MakananListView(),
+        builder: (context) => const _i14.MakananListView(),
         settings: data,
       );
     },
-    _i14.PesananListView: (data) {
+    _i15.PesananListView: (data) {
       return _i11.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i14.PesananListView(),
+        builder: (context) => const _i15.PesananListView(),
         settings: data,
       );
     },
-    _i15.AkunUserView: (data) {
+    _i16.AkunUserView: (data) {
       return _i11.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i15.AkunUserView(),
+        builder: (context) => const _i16.AkunUserView(),
         settings: data,
       );
     },
@@ -297,7 +327,7 @@ class UserIndexTrackingViewRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-extension NavigatorStateExtension on _i16.NavigationService {
+extension NavigatorStateExtension on _i17.NavigationService {
   Future<dynamic> navigateToSplashScreenView([
     int? routerId,
     bool preventDuplicates = true,
@@ -385,14 +415,18 @@ extension NavigatorStateExtension on _i16.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToDetailMakananView([
+  Future<dynamic> navigateToDetailMakananView({
+    _i11.Key? key,
+    required _i12.MakananModel makananModel,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return navigateTo<dynamic>(Routes.detailMakananView,
+        arguments:
+            DetailMakananViewArguments(key: key, makananModel: makananModel),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -574,14 +608,18 @@ extension NavigatorStateExtension on _i16.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithDetailMakananView([
+  Future<dynamic> replaceWithDetailMakananView({
+    _i11.Key? key,
+    required _i12.MakananModel makananModel,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return replaceWith<dynamic>(Routes.detailMakananView,
+        arguments:
+            DetailMakananViewArguments(key: key, makananModel: makananModel),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
