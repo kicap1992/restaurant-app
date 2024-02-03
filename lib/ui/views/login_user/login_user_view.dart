@@ -53,9 +53,9 @@ class LoginUserView extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
                         MyTextFormField(
-                          maxLength: 13,
-                          hintText: 'No. HP',
-                          keyboardType: TextInputType.phone,
+                          // maxLength: 13,
+                          hintText: 'Username',
+                          // keyboardType: TextInputType.phone,
                           controller: model.noHpController,
                         ),
                         const SizedBox(height: 16),

@@ -174,54 +174,57 @@ class DetailMakananView extends HookWidget {
                   ),
                 ],
               ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Total Harga",
-                          style: regularTextStyle.copyWith(
-                            fontSize: 14,
-                            color: fontGrey,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Total Harga",
+                            style: regularTextStyle.copyWith(
+                              fontSize: 14,
+                              color: fontGrey,
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          model.isBusy
-                              ? 'Loading...'
-                              : 'Rp. ${int.parse(makananModel.hargaMakanan!) + 10000}',
-                          style: boldTextStyle.copyWith(
-                            fontSize: 16,
-                            color: dangerColor,
+                          const SizedBox(
+                            height: 5,
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: dangerColor,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Pesan Sekarang",
-                          style: boldTextStyle.copyWith(
-                            fontSize: 16,
-                            color: Colors.white,
+                          Text(
+                            model.isBusy
+                                ? 'Loading...'
+                                : 'Rp. ${int.parse(makananModel.hargaMakanan!) + 10000}',
+                            style: boldTextStyle.copyWith(
+                              fontSize: 16,
+                              color: dangerColor,
+                            ),
                           ),
-                        ),
+                        ],
                       ),
                     ),
-                  ),
-                ],
+                    Expanded(
+                      child: Container(
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: dangerColor,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Pesan Sekarang",
+                            style: boldTextStyle.copyWith(
+                              fontSize: 16,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
